@@ -22,6 +22,11 @@ div{
     align-items: center;
     position: relative;
 }
+:root{
+    --before-rotate:0deg;
+    --after-rotate:90deg;
+    --bg-color:red;
+}
 div::before{
     content:'';
     border:50px solid transparent;
@@ -31,7 +36,12 @@ div::before{
     top:0;
     left:0;
     right:0;
+    transform: rotate(var(--before-rotate));
+    transition: 0.5s linear;
+    /* animation: rotateA 2s linear 0.5s infinite;  */
 }
+/* before and after has different top and bottom */
+/* because of before top and after bottom is same it was crashing */
 div::after{
     content:'';
     border:50px solid transparent;
@@ -40,4 +50,43 @@ div::after{
     bottom:0;
     right:0;
     left:0;
+    transform: rotate(var(--after-rotate));
+    /* animation:rotateB 2s linear infinite; */
+    transition: 0.5s linear 0.5s;
 }
+
+/* @keyframes rotateA
+{
+    0%,
+    25%
+    {
+        transform: rotate(0deg);
+    }
+    50%,
+    75%
+    {
+        transform: rotate(180deg);
+    }
+    100%
+    {
+        transform: rotate(360deg);
+    }
+}
+@keyframes rotateB
+{
+    0%,
+    25%
+    {
+        transform: rotate(90deg);
+    }
+    50%,
+    75%
+    {
+        transform: rotate(270deg);
+    }
+    100%
+    {
+        transform: rotate(450deg);
+    }
+} */
+/* why before and after border top and bottom are different */
